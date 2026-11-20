@@ -11,18 +11,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#14232E; --cream:#FAF7F2; --red:#A6322B; --line:#E4DED4; --muted:#5C6F6C; --teal:#0E7C7B;
+    --navy:#14232E; --cream:#FAF7F2; --red:#A6322B; --red-hot:#C0392B; --line:#E4DED4; --muted:#5C6F6C; --teal:#0E7C7B; --gold:#F5A25D;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{
     font-family:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     background:var(--cream); color:var(--navy); line-height:1.6;
   }
-  header{padding:28px clamp(20px,6vw,64px); display:flex; align-items:center; gap:12px}
+  header{padding:28px clamp(20px,6vw,64px) 20px; display:flex; align-items:center; gap:12px}
   .mark{width:34px;height:34px;border-radius:8px;background:var(--navy);display:grid;place-items:center;flex:none}
   .mark span{color:#fff;font-size:15px;line-height:1}
   .wordmark{font-weight:700;letter-spacing:.14em;font-size:13px;text-transform:uppercase;color:var(--navy)}
   .wordmark span{color:var(--red)}
+  .ticker{
+    background:var(--navy); color:#fff; overflow:hidden; white-space:nowrap;
+    padding:9px 0; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  }
+  .ticker span{display:inline-block; padding-right:0; animation:tick 22s linear infinite}
+  .ticker b{color:var(--gold); font-weight:700; padding:0 14px}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.ticker span{animation:none}}
   section{padding:clamp(48px,9vw,96px) clamp(24px,7vw,80px); border-top:1px solid var(--line)}
   .wrap{max-width:760px;margin:0 auto}
   .eyebrow{
@@ -35,15 +43,33 @@
   h1 em{font-style:normal;color:var(--red)}
   h2{font-size:clamp(26px,4vw,38px);line-height:1.15}
   p.lede{margin-top:20px;font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:36em}
+  .bingo-strip{display:flex;gap:8px;margin:26px 0 6px;flex-wrap:wrap}
+  .bingo-strip i{
+    width:38px;height:38px;border:2px solid var(--navy);border-radius:8px;display:grid;place-items:center;
+    font-style:normal;font-size:15px;color:var(--navy);background:#fff;flex:none
+  }
+  .bingo-strip i.hit{background:var(--red);border-color:var(--red);color:#fff}
+  .bingo-strip i:nth-child(2n){transform:rotate(-4deg)}
+  .bingo-strip i:nth-child(2n+1){transform:rotate(3deg)}
   .cta{
     display:inline-flex;align-items:center;gap:10px;margin-top:34px;
-    background:var(--red);color:#fff;border-radius:999px;padding:16px 32px;
-    font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 1px 3px rgba(20,35,46,.2);
+    background:var(--red);color:#fff;border-radius:999px;padding:16px 34px;
+    font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 2px 8px rgba(166,50,43,.35);
+    transition:transform .12s ease, box-shadow .12s ease;
   }
-  .cta:hover{background:#8f2822}
+  .cta:hover{background:var(--red-hot);transform:translateY(-1px);box-shadow:0 4px 14px rgba(166,50,43,.4)}
   .cta.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line);box-shadow:none}
   .cta.ghost:hover{border-color:var(--red)}
   .under{display:block;margin-top:12px;font-size:13px;color:var(--muted)}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .badges span{
+    font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);
+    border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;
+  }
+  .steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:34px}
+  .steps div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .steps b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+  .steps p{font-size:15px}
   .cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:36px}
   .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
   .card h3{font-size:16px;margin-bottom:8px}
@@ -82,13 +108,36 @@
     <div class="wordmark">Aesthetic Practice <span>Success</span></div>
   </header>
 
+  <div class="ticker" aria-hidden="true"><span>
+    Jan 4 &rarr; Feb 28 <b>★</b> One square a week <b>★</b> Scores on the wall <b>★</b> First 20 practices <b>★</b> $97 founder price <b>★</b>&nbsp;
+    Jan 4 &rarr; Feb 28 <b>★</b> One square a week <b>★</b> Scores on the wall <b>★</b> First 20 practices <b>★</b> $97 founder price <b>★</b>&nbsp;
+  </span></div>
+
   <section>
     <div class="wrap">
       <span class="eyebrow">Glow Bingo · The January Slow-Season Kit</span>
       <h1>One square a week. January <em>stops running you.</em></h1>
-      <p class="lede">January is the slow season every med spa braces for and no one plans for. Glow Bingo turns the nine weeks from January 4 to February 28 into a game your front desk actually runs: one square per week, one huddle card, scores kept in the open. Your team stays in motion while your competitors wait for the phone to ring.</p>
+      <p class="lede">Every med spa braces for slow January. Almost none plan for it. Glow Bingo turns the nine weeks from January 4 to February 28 into a game your front desk actually runs: one square per week, one huddle card, scores on the wall. Your team stays in motion. Your competitors wait for the phone to ring.</p>
+      <div class="bingo-strip" aria-hidden="true">
+        <i>G</i><i class="hit">L</i><i>O</i><i class="hit">W</i><i>★</i><i class="hit">B</i><i>I</i><i>N</i><i class="hit">G</i><i>O</i>
+      </div>
       <a class="cta" href="https://buy.stripe.com/9B6aEZgEO9DV9Pr5Ub4sE0b">Pre-order Glow Bingo — $97</a>
       <span class="under">Founder price, first 20 practices. Pre-order today, kit delivered December 15 — ready for the January 4 start.</span>
+      <div class="badges">
+        <span>9 huddle cards</span><span>21-page playbook</span><span>Printable tracker</span><span>Huddle lines</span><span>Compliance baked in</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">How it plays</span>
+      <h2>Two minutes Monday. One square all week.</h2>
+      <div class="steps">
+        <div><b>Friday</b><p>Print the card. Post it where the whole team can see the score.</p></div>
+        <div><b>Monday</b><p>Two-minute huddle. One square. Everyone knows what this week is for.</p></div>
+        <div><b>All week</b><p>Work the square. Check it off. Let the room see it move.</p></div>
+      </div>
     </div>
   </section>
 
@@ -114,7 +163,7 @@
       <p class="lede">Most practices spend February wondering where January went. The ones that grow treat the slow season like a season: planned in December, played square by square. Glow Bingo is the keeping-score piece — the game that keeps the plan alive after launch week ends.</p>
       <div class="pricebar">
         <span class="price">$97</span>
-        <span class="note">Founder price for the first 20 practices. Then it's gone.</span>
+        <span class="note">Founder price for the first 20 practices. Then it's gone for good.</span>
       </div>
       <a class="cta" href="https://buy.stripe.com/9B6aEZgEO9DV9Pr5Ub4sE0b">Pre-order Glow Bingo — $97</a>
       <span class="under">Delivered December 15. Your team plays the first card January 4.</span>
